@@ -10,29 +10,25 @@ import { Spring, config } from "react-spring";
 import chroma from "chroma-js";
 import Cards from "./Card";
 
-const geoPaths = ["/us3.json", "/deTopo.json"];
+const geoPaths = ["./data/world.json", "/ch.json"];
 
 const getRandomInt = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min);
 
 const colorScale = chroma.brewer.Oranges.slice(1);
-const scl = chroma
-  .scale(["#FFF", "#FF5419", "#000"])
-  .mode("lch")
-  .colors(8);
 
 const colors = Array(180)
   .fill()
   .map(d => colorScale[getRandomInt(0, colorScale.length - 1)]);
 
-class MyApp extends Component {
+class Map extends Component {
   state = {
     detail: false,
     paths: geoPaths[0],
     center: [0, 0],
     zoom: 1
   };
-  switchPaths = (a, b, c) => {
+  switchPaths = () => {
     const { detail } = this.state;
     this.setState({
       paths: detail ? geoPaths[0] : geoPaths[1],
@@ -44,16 +40,15 @@ class MyApp extends Component {
   render() {
     return (
       <div>
-        {"Click on the map!"}
         <Spring
           from={{ zoom: 1 }}
           to={{ zoom: this.state.zoom }}
           config={config.slow}
         >
           {styles => (
-            <ComposableMap style={{ width: "200%", height: "200%" }}>
+            <ComposableMap>
               <ZoomableGroup center={this.state.center} zoom={styles.zoom}>
-                <Geographies geography={this.state.paths} disableoptimization="true">
+                <Geographies geography={this.state.paths} disableOptimization>
                   {(geos, proj) =>
                     geos.map((geo, i) => (
                       <Geography
@@ -86,11 +81,12 @@ class MyApp extends Component {
             </ComposableMap>
           )}
         </Spring>
-        <Cards />
       </div>
     );
   }
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<MyApp />, rootElement);
+export default Map;
+//export default memo(MapChart);
+
+<Cards />

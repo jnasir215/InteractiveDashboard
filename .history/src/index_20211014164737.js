@@ -10,7 +10,7 @@ import { Spring, config } from "react-spring";
 import chroma from "chroma-js";
 import Cards from "./Card";
 
-const geoPaths = ["/us3.json", "/deTopo.json"];
+const geoPaths = ["/us.json", "/ch.json"];
 
 const getRandomInt = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min);
@@ -51,7 +51,7 @@ class MyApp extends Component {
           config={config.slow}
         >
           {styles => (
-            <ComposableMap style={{ width: "200%", height: "200%" }}>
+            <ComposableMap style={{ width: "100%", height: "auto" }}>
               <ZoomableGroup center={this.state.center} zoom={styles.zoom}>
                 <Geographies geography={this.state.paths} disableoptimization="true">
                   {(geos, proj) =>

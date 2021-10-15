@@ -29,14 +29,14 @@ class MyApp extends Component {
   state = {
     detail: false,
     paths: geoPaths[0],
-    center: [0, 0],
-    zoom: 1
+    center: [200, 200],
+    zoom: 0
   };
   switchPaths = (a, b, c) => {
     const { detail } = this.state;
     this.setState({
       paths: detail ? geoPaths[0] : geoPaths[1],
-      center: detail ? [0, 0] : [8, 47],
+      center: detail ? [200, 200] : [8, 47],
       zoom: detail ? 1 : 60,
       detail: !detail
     });
@@ -51,9 +51,9 @@ class MyApp extends Component {
           config={config.slow}
         >
           {styles => (
-            <ComposableMap style={{ width: "200%", height: "200%" }}>
+            <ComposableMap style={{ width: "200%", height: "auto" }}>
               <ZoomableGroup center={this.state.center} zoom={styles.zoom}>
-                <Geographies geography={this.state.paths} disableoptimization="true">
+                <Geographies geography={this.state.paths} disableoptimization="false">
                   {(geos, proj) =>
                     geos.map((geo, i) => (
                       <Geography

@@ -51,7 +51,7 @@ class MyApp extends Component {
           config={config.slow}
         >
           {styles => (
-            <ComposableMap style={{ width: "200%", height: "200%" }}>
+            <ComposableMap style={{ width: "100%", height: "auto" }}>
               <ZoomableGroup center={this.state.center} zoom={styles.zoom}>
                 <Geographies geography={this.state.paths} disableoptimization="true">
                   {(geos, proj) =>

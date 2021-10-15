@@ -30,7 +30,7 @@ class MyApp extends Component {
     detail: false,
     paths: geoPaths[0],
     center: [0, 0],
-    zoom: 1
+    zoom: 100
   };
   switchPaths = (a, b, c) => {
     const { detail } = this.state;

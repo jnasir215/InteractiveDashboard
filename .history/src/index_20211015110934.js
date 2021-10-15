@@ -30,14 +30,14 @@ class MyApp extends Component {
     detail: false,
     paths: geoPaths[0],
     center: [0, 0],
-    zoom: 1
+    zoom: 0
   };
   switchPaths = (a, b, c) => {
     const { detail } = this.state;
     this.setState({
       paths: detail ? geoPaths[0] : geoPaths[1],
       center: detail ? [0, 0] : [8, 47],
-      zoom: detail ? 1 : 60,
+      zoom: detail ? 1 : 1000,
       detail: !detail
     });
   };
